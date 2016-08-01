@@ -1,5 +1,5 @@
-#ifndef ABR_VERTEXBUFFER_H
-#define ABR_VERTEXBUFFER_H
+#ifndef UGE_VERTEXBUFFER_H
+#define UGE_VERTEXBUFFER_H
 
 #include <vector>
 

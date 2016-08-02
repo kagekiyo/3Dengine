@@ -2,6 +2,7 @@
 #define UGE_GEOMETRY_H
 
 #include <vector>
+#include <string>
 #include <memory>
 #include "SDLGL.h"
 

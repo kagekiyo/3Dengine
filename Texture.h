@@ -26,11 +26,13 @@ namespace UGE
 			unsigned int		getWidth() const;
 			unsigned int		getHeight() const;
 			const std::string&	getName() const;
+			bool				isValid() const;
 		private:
 			unsigned char*		mData;
 			unsigned int		mWidth;
 			unsigned int		mHeight;
 			std::string			mName;
+			bool				mValid;
 		};
 
 		enum class Format

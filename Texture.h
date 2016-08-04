@@ -74,8 +74,8 @@ namespace UGE
 		bool				isDepth() const;
 
 	private:
-		GLenum				paramToEnum(Param p);
-		GLenum				paramValueToEnum(ParamValue pv);
+		static GLenum		paramToEnum(Param p);
+		static GLenum		paramValueToEnum(ParamValue pv);
 
 		unsigned int		mID;
 		std::string			mName;

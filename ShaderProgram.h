@@ -5,6 +5,7 @@
 #include <map>
 #include "SDLGL.h"
 #include "glm/glm.hpp"
+#include <memory>
 
 namespace UGE
 {
@@ -13,7 +14,7 @@ namespace UGE
 	class ShaderProgram
 	{
 	public:
-		ShaderProgram(const std::string &name, const Shader &vertexShader, const Shader &fragmentShader);
+		ShaderProgram(const std::string &name, std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader);
 		~ShaderProgram();
 
 		void					use();
@@ -27,8 +28,8 @@ namespace UGE
 
 		bool					link();
 		void					bindAttribLocation(unsigned int index, const std::string &name);
-		const Shader&			getVertexShader() const;
-		const Shader&			getFragmentShader() const;
+		std::shared_ptr<Shader> getVertexShader() const;
+		std::shared_ptr<Shader> getFragmentShader() const;
 		const std::string&		getName() const;
 		std::string				log();
 	private:
@@ -39,8 +40,8 @@ namespace UGE
 		unsigned int			mID;
 		std::string				mName;
 		std::string				mLog;
-		const Shader&			mVertexShader;
-		const Shader&			mFragmentShader;
+		std::shared_ptr<Shader>	mVertexShader;
+		std::shared_ptr<Shader>	mFragmentShader;
 		UniformMap				mUniforms;
 
 		static ShaderProgram*	sProgramInUse;

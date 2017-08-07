@@ -17,7 +17,7 @@ namespace UGE
 		void						bind();
 		void						unbind();
 
-		void						attachTexture(std::shared_ptr<Texture> texture);
+		void						attachTexture(const std::shared_ptr<Texture>& texture);
 		void						detachTexture();
 
 		unsigned int				getWidth() const;

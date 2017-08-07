@@ -39,7 +39,7 @@ namespace UGE
 		checkGL(glBindFramebuffer 0)
 	}
 
-	void Framebuffer::attachTexture(std::shared_ptr<Texture> texture)
+	void Framebuffer::attachTexture(const std::shared_ptr<Texture>& texture)
 	{
 		bind();
 #ifdef _WIN32

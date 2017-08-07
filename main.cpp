@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
 
 	std::shared_ptr<ShaderProgram> p;
 	{
-		std::shared_ptr<Shader> v(new Shader("vert", Shader::Type::Vertex));
-		std::shared_ptr<Shader> f(new Shader("frag", Shader::Type::Fragment));
-		p.reset(new ShaderProgram("prog", v, f));
+		std::shared_ptr<Shader> v = std::make_shared<Shader>("vert", Shader::Type::Vertex);
+		std::shared_ptr<Shader> f = std::make_shared<Shader>("frag", Shader::Type::Fragment);
+		p = std::make_shared<ShaderProgram>("prog", v, f);
 	}
 	return 0;
 }

@@ -6,7 +6,7 @@ namespace UGE
 {
 	ShaderProgram* ShaderProgram::sProgramInUse = nullptr;
 
-	ShaderProgram::ShaderProgram(const std::string &name, std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader)
+	ShaderProgram::ShaderProgram(const std::string &name, const std::shared_ptr<Shader> &vertexShader, const std::shared_ptr<Shader> &fragmentShader)
 		: mID(glCreateProgram())
 		, mName(name)
 		, mVertexShader(vertexShader)

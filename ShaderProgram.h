@@ -14,7 +14,7 @@ namespace UGE
 	class ShaderProgram
 	{
 	public:
-		ShaderProgram(const std::string &name, std::shared_ptr<Shader> vertexShader, std::shared_ptr<Shader> fragmentShader);
+		ShaderProgram(const std::string &name, const std::shared_ptr<Shader> &vertexShader, const std::shared_ptr<Shader> &fragmentShader);
 		~ShaderProgram();
 
 		void					use();

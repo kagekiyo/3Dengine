@@ -25,7 +25,7 @@ namespace UGE
 		Geometry();
 
 		void							draw();
-		void							addVertexBuffer(VertexBufferPtr vbo);
+		void							addVertexBuffer(const VertexBufferPtr& vbo);
 		void							setMode(Mode m);
 		void							setVertexCount(unsigned int count);
 		const std::string&				getName() const;

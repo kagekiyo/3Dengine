@@ -82,6 +82,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="SDLGL.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />

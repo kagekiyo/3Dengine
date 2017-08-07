@@ -46,7 +46,7 @@ namespace UGE
 		}
 	}
 
-	void Geometry::addVertexBuffer(VertexBufferPtr vbo)
+	void Geometry::addVertexBuffer(const VertexBufferPtr& vbo)
 	{
 		mVBOs.push_back(vbo);
 		calculateVertexCount();

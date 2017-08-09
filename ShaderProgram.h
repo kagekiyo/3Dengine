@@ -10,10 +10,21 @@
 namespace UGE
 {
 	class Shader;
+	class Material;
 
 	class ShaderProgram
 	{
 	public:
+		class Cache
+		{
+		public:
+			static Cache& instance();
+			std::shared_ptr<ShaderProgram> getProgram(const Material& m);
+		private:
+			Cache() = default;
+			~Cache() = default;
+			std::map<int, std::shared_ptr<ShaderProgram>> mPrograms;
+		};
 		ShaderProgram(const std::string &name, const std::shared_ptr<Shader> &vertexShader, const std::shared_ptr<Shader> &fragmentShader);
 		~ShaderProgram();
 

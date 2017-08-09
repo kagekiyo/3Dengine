@@ -1,5 +1,6 @@
 #include "Shader.h"
 #include "ShaderProgram.h"
+#include "Material.h"
 #include <memory>
 
 int main(int argc, char *argv[])
@@ -25,6 +26,9 @@ int main(int argc, char *argv[])
 		std::shared_ptr<Shader> v = std::make_shared<Shader>("vert", Shader::Type::Vertex);
 		std::shared_ptr<Shader> f = std::make_shared<Shader>("frag", Shader::Type::Fragment);
 		p = std::make_shared<ShaderProgram>("prog", v, f);
+
+		Material m;
+		auto program = ShaderProgram::Cache::instance().getProgram(m);
 	}
 	return 0;
 }

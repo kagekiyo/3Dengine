@@ -14,7 +14,6 @@ namespace UGE
 	{
 	}
 
-
 	ShaderProgram::~ShaderProgram()
 	{
 		glDeleteProgram(mID);
@@ -170,5 +169,39 @@ namespace UGE
 			sprintf(buffer, "GL Error: uniform %s in program %s does not exist\n", name.c_str(), mName.c_str());
 			mLog += buffer;
 		}
+	}
+
+	ShaderProgram::Cache& ShaderProgram::Cache::instance()
+	{
+		static Cache c;
+		return c;
+	}
+
+	std::shared_ptr<ShaderProgram> ShaderProgram::Cache::getProgram(const Material& m)
+	{
+		// todo: hash
+		int hash = 0;
+		auto it = mPrograms.find(hash);
+		if(it == mPrograms.end())
+		{
+			auto vertShader = std::make_shared<Shader>("v", Shader::Type::Vertex);
+			auto fragShader = std::make_shared<Shader>("f", Shader::Type::Fragment);
+
+			// todo: write shaders
+			vertShader->setSource("");
+			fragShader->setSource("");
+
+			if(!vertShader->compile())
+				printf(vertShader->log().c_str());
+			if(!fragShader->compile())
+				printf(fragShader->log().c_str());
+
+			auto program = std::make_shared<ShaderProgram>("p", vertShader, fragShader);
+			if(!program->link())
+				printf(program->log().c_str());
+
+			it = mPrograms.insert(it, {hash, program});
+		}
+		return it->second;
 	}
 }

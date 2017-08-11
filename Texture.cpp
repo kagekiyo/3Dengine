@@ -1,6 +1,7 @@
 #include "Texture.h"
 #include <vector>
 #include "lodepng.h"
+#include <string>
 
 namespace UGE
 {
@@ -9,6 +10,7 @@ namespace UGE
 	Texture::Data::Data(const std::string &filename, Texture::Data::Type t)
 		: mData(nullptr)
 		, mValid(true)
+		, mFilename(filename)
 	{
 		switch(t)
 		{
@@ -72,9 +74,15 @@ namespace UGE
 		return mValid;
 	}
 
+	const std::string&	Texture::Data::getFilename() const
+	{
+		return mFilename;
+	}
+
 	Texture::Texture(const std::string &name, Format f)
 		: mName(name)
 		, mFormat(f)
+		, mFilenameHash(0)
 	{
 		glGenTextures(1, &mID);
 		checkGL(glGenTextures)
@@ -83,7 +91,10 @@ namespace UGE
 	Texture::Texture(const Data &d, Format f)
 		: mName(d.getName())
 		, mFormat(f)
+		, mFilenameHash(0)
 	{
+		std::hash<std::string> h;
+		mFilenameHash = h(d.getFilename());
 		glGenTextures(1, &mID);
 		checkGL(glGenTextures)
 		setData(d);
@@ -203,5 +214,10 @@ namespace UGE
 			case ParamValue::None:			return GL_INVALID_ENUM;		break;
 		}
 		return GL_INVALID_ENUM;
+	}
+
+	bool Texture::operator<(const Texture& rhs) const
+	{
+		return mFilenameHash < rhs.mFilenameHash;
 	}
 }

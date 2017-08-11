@@ -27,12 +27,14 @@ namespace UGE
 			unsigned int		getHeight() const;
 			const std::string&	getName() const;
 			bool				isValid() const;
+			const std::string&	getFilename() const;
 		private:
 			unsigned char*		mData;
 			unsigned int		mWidth;
 			unsigned int		mHeight;
 			std::string			mName;
 			bool				mValid;
+			std::string			mFilename;
 		};
 
 		enum class Format
@@ -61,6 +63,8 @@ namespace UGE
 		Texture(const Data &d, Format f);
 		~Texture();
 
+		bool operator<(const Texture& rhs) const;
+
 		unsigned int		getID() const;
 		void				setData(unsigned int width, unsigned int height, const void *data);
 		void				setData(const Data &d);
@@ -86,6 +90,7 @@ namespace UGE
 		ParamValue			mMagFilter;
 		ParamValue			mWrapS;
 		ParamValue			mWrapT;
+		int					mFilenameHash;
 
 		static unsigned int	sUnits[8];
 	};

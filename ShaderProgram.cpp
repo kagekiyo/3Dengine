@@ -1,5 +1,6 @@
 #include "ShaderProgram.h"
 #include "Shader.h"
+#include "Material.h"
 #include "glm/gtc/type_ptr.hpp"
 
 namespace UGE
@@ -179,9 +180,10 @@ namespace UGE
 
 	std::shared_ptr<ShaderProgram> ShaderProgram::Cache::getProgram(const Material& m)
 	{
-		// todo: hash
-		int hash = 0;
-		auto it = mPrograms.find(hash);
+		int key = 0;
+		key |= static_cast<int>(m.isTransparent());
+		key |= static_cast<int>(m.getTexture() != nullptr)	<< 1;
+		auto it = mPrograms.find(key);
 		if(it == mPrograms.end())
 		{
 			auto vertShader = std::make_shared<Shader>("v", Shader::Type::Vertex);
@@ -200,7 +202,7 @@ namespace UGE
 			if(!program->link())
 				printf(program->log().c_str());
 
-			it = mPrograms.insert(it, {hash, program});
+			it = mPrograms.insert(it, {key, program});
 		}
 		return it->second;
 	}

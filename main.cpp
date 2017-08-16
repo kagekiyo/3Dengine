@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include "ShaderProgram.h"
 #include "Material.h"
+#include "Texture.h"
 #include <memory>
 
 int main(int argc, char *argv[])
@@ -28,6 +29,9 @@ int main(int argc, char *argv[])
 		p = std::make_shared<ShaderProgram>("prog", v, f);
 
 		Material m;
+		m.setTransparency(true);
+		auto t = std::make_shared<Texture>(Texture::Data("", Texture::Data::Type::PNG), Texture::Format::RGBA);
+		m.setTexture(t);
 		auto program = ShaderProgram::Cache::instance().getProgram(m);
 	}
 	return 0;

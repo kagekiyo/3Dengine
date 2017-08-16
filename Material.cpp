@@ -25,6 +25,17 @@ namespace UGE
 		mColour = glm::vec4(rgb.x, rgb.y, rgb.z, 1.0f);
 	}
 
+	std::shared_ptr<Texture> Material::getTexture() const
+	{
+		return mTexture.lock();
+	}
+
+	void Material::setTexture(const std::shared_ptr<Texture>& t)
+	{
+		mTexture = t;
+		getProgram();
+	}
+
 	bool Material::isTransparent() const
 	{
 		return mTransparency;
